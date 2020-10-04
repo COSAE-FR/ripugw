@@ -6,8 +6,6 @@
  * https://opensource.org/licenses/MIT.
  */
 
-//+build !freebsd
-
 package main
 
 const defaultConfigFile = "/etc/ripugw/gateway.toml"
