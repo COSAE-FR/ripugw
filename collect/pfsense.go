@@ -12,7 +12,10 @@ import (
 	"github.com/gcrahay/ripugw/inform"
 	"github.com/gcrahay/ripugw/pfconf"
 	hoststats "github.com/shirou/gopsutil/host"
+	"io/ioutil"
 	"net"
+	"os"
+	"strings"
 	"time"
 )
 
@@ -78,6 +81,39 @@ func computeMacFromIp(ip string) inform.HardwareAddr {
 	return append(hwAddress, ipObject[len(ipObject)-4:]...)
 }
 
+func fileExists(filename string) bool {
+	info, err := os.Stat(filename)
+	if os.IsNotExist(err) {
+		return false
+	}
+	return !info.IsDir()
+}
+
+func getPfSenseVersion() string {
+	if fileExists("/etc/version") {
+		contentVersion, err := ioutil.ReadFile("/etc/version")
+		if err != nil {
+			return ""
+		}
+		version := strings.TrimSpace(string(contentVersion))
+		if len(version) == 0 {
+			return ""
+		}
+		if fileExists("/etc/version.patch") {
+			contentPatch, err := ioutil.ReadFile("/etc/version.patch")
+			if err != nil {
+				return ""
+			}
+			patch := strings.TrimSpace(string(contentPatch))
+			if len(patch) > 0 {
+				version = version + "-p" + patch
+			}
+		}
+		return version
+	}
+	return ""
+}
+
 func RequestFromPfsense(address string, version string, pfsense pfconf.Configuration, translation PfSenseTranslationTable, speedtest *inform.SpeedTestStatus) (inform.Inform, error) {
 	now := time.Now()
 	request := inform.Inform{
@@ -132,6 +168,10 @@ func RequestFromPfsense(address string, version string, pfsense pfconf.Configura
 		//request.ModelDisplay = strings.Title(host.Platform)
 		request.ModelDisplay = "UniFi-Gateway-3"
 		request.Version = host.PlatformVersion
+		pfsenseVersion := getPfSenseVersion()
+		if len(pfsenseVersion) > 0 {
+			request.Version = pfsenseVersion
+		}
 		request.BootRomVersion = host.PlatformVersion
 	}
 
