@@ -1,4 +1,4 @@
-module github.com/gcrahay/ripugw
+module github.com/COSAE-FR/ripugw
 
 go 1.14
 

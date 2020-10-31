@@ -9,8 +9,8 @@
 package collect
 
 import (
-	"github.com/gcrahay/ripugw/inform"
-	"github.com/gcrahay/ripugw/pfconf"
+	"github.com/COSAE-FR/ripugw/inform"
+	"github.com/COSAE-FR/ripugw/pfconf"
 	hoststats "github.com/shirou/gopsutil/host"
 	"io/ioutil"
 	"net"
@@ -89,7 +89,7 @@ func fileExists(filename string) bool {
 	return !info.IsDir()
 }
 
-func getPfSenseVersion() string {
+func GetPfSenseVersion() string {
 	if fileExists("/etc/version") {
 		contentVersion, err := ioutil.ReadFile("/etc/version")
 		if err != nil {
@@ -168,7 +168,7 @@ func RequestFromPfsense(address string, version string, pfsense pfconf.Configura
 		//request.ModelDisplay = strings.Title(host.Platform)
 		request.ModelDisplay = "UniFi-Gateway-3"
 		request.Version = host.PlatformVersion
-		pfsenseVersion := getPfSenseVersion()
+		pfsenseVersion := GetPfSenseVersion()
 		if len(pfsenseVersion) > 0 {
 			request.Version = pfsenseVersion
 		}

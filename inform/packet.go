@@ -11,7 +11,7 @@ package inform
 
 import (
 	"errors"
-	"github.com/gcrahay/ripugw/inform/binary"
+	"github.com/COSAE-FR/ripugw/inform/binary"
 )
 
 const (

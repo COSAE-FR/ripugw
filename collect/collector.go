@@ -11,7 +11,7 @@ package collect
 import (
 	"errors"
 	"fmt"
-	"github.com/gcrahay/ripugw/inform"
+	"github.com/COSAE-FR/ripugw/inform"
 	"github.com/jackpal/gateway"
 	cpustats "github.com/shirou/gopsutil/cpu"
 	hoststats "github.com/shirou/gopsutil/host"
