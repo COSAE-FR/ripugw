@@ -57,17 +57,18 @@ func prepareRealInterface(pfInterface pfconf.Interface, interfaces []inform.Inte
 func populateInterfaces(p []inform.Interface, pfsense []pfconf.Interface, translation PfSenseTranslationTable) PfSenseTranslation {
 	result := PfSenseTranslation{}
 	for _, iface := range pfsense {
-		switch iface.XMLName.Local {
-		case translation.Lan:
+		if iface.XMLName.Local == translation.Lan {
 			result.Lan = prepareRealInterface(iface, p, "eth1", "lan")
-		case translation.Wan:
+		}
+		if iface.XMLName.Local == translation.Wan {
 			result.Wan = prepareRealInterface(iface, p, "eth0", "wan")
-		case translation.Wan2:
+		}
+		if iface.XMLName.Local == translation.Wan2 {
 			result.Wan2 = prepareRealInterface(iface, p, "eth2", "wan2")
-		case translation.Uid:
+		}
+		if iface.XMLName.Local == translation.Uid {
 			result.Uid = prepareRealInterface(iface, p, "", "uid")
 		}
-
 	}
 	return result
 }
