@@ -12,7 +12,6 @@ import (
 	"errors"
 	"fmt"
 	"github.com/COSAE-FR/ripugw/inform"
-	"github.com/jackpal/gateway"
 	cpustats "github.com/shirou/gopsutil/cpu"
 	hoststats "github.com/shirou/gopsutil/host"
 	loadstats "github.com/shirou/gopsutil/load"
@@ -101,10 +100,6 @@ func FormatMask(mask net.IPMask) string {
 	}
 
 	return fmt.Sprintf("%d.%d.%d.%d", mask[0], mask[1], mask[2], mask[3])
-}
-
-func Gateway() (net.IP, error) {
-	return gateway.DiscoverGateway()
 }
 
 func SysStats() (inform.SysStats, error) {

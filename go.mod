@@ -18,7 +18,7 @@ require (
 	github.com/shirou/gopsutil v2.20.7+incompatible
 	github.com/sirupsen/logrus v1.6.0
 	github.com/stretchr/testify v1.6.1 // indirect
-	golang.org/x/sys v0.0.0-20200828194041-157a740278f4 // indirect
+	golang.org/x/net v0.0.0-20201110031124-69a78807bb2b
 	gopkg.in/alecthomas/kingpin.v2 v2.2.6 // indirect
 	gopkg.in/hlandau/configurable.v1 v1.0.1 // indirect
 	gopkg.in/hlandau/easyconfig.v1 v1.0.17
