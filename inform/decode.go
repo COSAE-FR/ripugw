@@ -47,6 +47,4 @@ func Unmarshal(data []byte) (Message, error) {
 		err := msg.unmarshalMap(result)
 		return msg, err
 	}
-
-	return nil, nil
 }

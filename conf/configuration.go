@@ -239,9 +239,12 @@ func New(path string, jsonFormat bool) (*Config, error) {
 		config.useJson = true
 	}
 	err := config.Read()
+	if err != nil {
+		return &config, err
+	}
 	config.setUpLog()
 	changed, err := config.check()
-	if changed {
+	if err != nil && changed {
 		_ = config.Write()
 	}
 	return &config, err

@@ -250,17 +250,14 @@ func informTick(svc *Service) {
 					logger.Debugf("Decoded response authkey: %s, default: %v", svc.Config.Management.Key, svc.Config.Management.GetKey().IsDefault())
 					_ = svc.Config.Write()
 				}
-				break
 			case *inform.Noop:
 				logger.Debugf("Received Noop message")
-				break
 			case *inform.Cmd:
 				logger.Debugf("Received Cmd message")
 				switch response.Command {
 				case "speed-test":
 					logger.Debugf("Command type: %s", response.Command)
 					go SpeedTest(svc)
-					break
 				default:
 					logger.Debugf("Unknown command: %s", response.Command)
 

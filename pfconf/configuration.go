@@ -28,8 +28,7 @@ type Configuration struct {
 }
 
 func (c *Configuration) Finalize() error {
-	var err error
-	err = c.System.Finalize()
+	err := c.System.Finalize()
 	return err
 }
 
