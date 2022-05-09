@@ -61,7 +61,7 @@ type Interface struct {
 	If          string               `xml:"if"`
 	Enable      BoolIfElementPresent `xml:"enable"`
 	BlockBogons BoolIfElementPresent `xml:"blockbogons"`
-	SpoofMac    BoolIfElementPresent `xml:"spoofmac"`
+	SpoofMac    string               `xml:"spoofmac"`
 	Description string               `xml:"descr"`
 	Ip          string               `xml:"ipaddr"`
 	Subnet      uint8                `xml:"subnet"`
