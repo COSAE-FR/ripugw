@@ -267,6 +267,7 @@ func RequestFromPfsense(address string, version string, pfsense pfconf.Configura
 		if table.Lan.Pfsense.If != "" {
 			lan := table.Lan.Physical
 			lan.Name = table.Lan.UnifiName
+			lan.Mac = inform.HardwareAddr{0xbe, 0xef, 0xac, 0x13, 0x03, 0x22}
 			request.IntfTable = append(request.IntfTable, lan)
 			request.PortTable = append(request.PortTable, inform.Port{
 				IfName: lan.Name,
