@@ -28,7 +28,7 @@ import (
 	"time"
 )
 
-const Version = "1.1.3"
+const Version = "1.1.4"
 
 var httpClient = &http.Client{
 	Transport: &http.Transport{
